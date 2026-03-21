@@ -3,12 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <link rel="icon" href="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/image2.png" type="image">
+        <title>Lily Home</title>
         <style type = "text/CSS">
-            #gnb {z-index: 3; position: fixed; top: 0px; left:0px;}
             #wall {z-index: 1; opacity:0.8; position: fixed; top:0px; left:0px;}
-            #test {z-index:2; position: relative;}
+            #test {z-index:2; position: relative; }
+            #gnb {z-index: 3; position: fixed; top: 0px; left:0px;}
+            #chat-container { z-index:4; position: fixed; width: 300px; border: 1px solid #a4ff2d; padding: 10px; bottom:70px; right:20px;}
+            #chat-window { z-index:6; position: relative; height: 200px; overflow-y: scroll; border-bottom: 1px solid #b82a2a; margin-bottom: 10px; }
+            #chat_title {z-index:5; position: fixed;  bottom: 340px; right:250px;}
+            .bot-msg { color: blue; margin: 5px 0; }
+            .user-msg { color: black; text-align: right; margin: 5px 0; }
         </style>
+
+        
     </head>
     <body>
         <img src="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/sin1.jpg" id="wall" height="1800">
@@ -27,7 +35,40 @@
             </br>
             <img src="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/bbang2.jpg" id ="test" alt="이미지 불러오기 오류" width="600">
         </p>
+        <p id ="test"> <a href="1차시 예제.html" title="lily 연습이었던것..">연습이었던것..</a> 
+        </p>
 
-        <h4><a href="1차시 예제.html" title="lily 연습이었던것..">연습이었던것..</a></h4>
+        <div id="chat_title" class="chat-wrapper" >챗봇임당
+            <div id="chat-container">
+                <div id="chat-window">
+                    <div id="messages"></div>
+                </div>
+                <input type="text" id="user-input" placeholder="메시지 입력해주세요..">
+                <button onclick="sendMessage()">전송</button>
+            </div>
+        <div>
+        <script type = "text/javascript">
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const messages = document.getElementById('messages');
+                
+            if (input.value.trim() === "") return;
+
+            // 사용자 메시지 표시
+            messages.innerHTML += `<div class="user-msg">${input.value}</div>`;
+                
+            // 봇 응답 로직 (간단한 규칙 기반)
+            let response = "죄삼다..AI는 안됩니당..";
+            if (input.value.includes("안녕")) response = "안녕하세요! 무엇을 도와드릴까요?";
+                
+            setTimeout(() => {
+                messages.innerHTML += `<div class="bot-msg">봇: ${response}</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+
+            input.value = "";
+        }
+        </script>
+
         </body>
 </html>
