@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu3</title>
+    <link rel="icon" href="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/image2.png" type="image">
+    <style type = "text/CSS">
+        #gnb{
+            position: fixed; top: 0px; left: 0px;
+            background-color : #C8BFE7;
+            display: flex;
+            width: 100%; height: 50px;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        .logo{
+            padding: 0 20px;
+            align-items: center;
+            display:flex;
+        }
+        .menu{
+            list-style: none;
+            display: flex;
+            height: 100%;
+            align-items:center;
+            /*padding: 0 10px;*/
+        }
+        a {
+            text-decoration: none; 
+            display:flex;
+        }
+        .menu > li{
+            height: 100%;
+            align-items:center;
+            display: flex;
+            /*padding: 0 10px;*/
+        }
+        .menu > li:hover  {
+            background-color: #707070;
+            transition-duration: 0.3s;
+            cursor : pointer;
+        }
+        .menu > li > a {
+            text-decoration: none;
+            color:#000000;
+            padding: 0 15px;
+            font-size: 12pt;
+        }
+        .menu > li:hover > a{
+            color: #ffffff;
+        }
+        body {
+            position: relative; top: 50px;
+            background-color:#C8BFE7;
+            
+        }
+        .back{
+            color:#000000;
+            width: 30px;
+            font: bold;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav id= "gnb">
+        <div class="logo">
+            <a href="lily01.html"><img src="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/image2.png" alt="로고" height="40" ></a>
+        </div>
+        <ul class="menu">
+            <li><a href="lily_menu1.html">여행</a></li>
+            <li><a href="lily_menu2.html">카페</a></li>
+            <li><a href="lily_menu3.html">빵이</a></li>
+        </ul>
+    </nav>
+    <p>
+        <div>
+            <a href = "lily01.html" class="back" >←</a></div>
+        </br>귀여운 빵이</br>
+        <img src="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/bbang1.jpg" id ="test" alt="이미지 불러오기 오류" height="380">
+        </br>
+        <img src="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/bbang2.jpg" id ="test" alt="이미지 불러오기 오류" width="600">
+    </p>
+    
+</body>
+</html>

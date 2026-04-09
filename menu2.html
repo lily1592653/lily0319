@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/image2.png" type="image">
+    <title>menu</title>
+    <style type = "text/CSS">
+        * {
+        margin: 0;
+        padding: 0;
+        }
+        #menu{ /*menu의 ID를 가진 스타일 지정*/
+            position: fixed;
+            top: 0px;
+            width: 100%; /*menu의 너비를 800px 또는 %으로 설정*/ 
+            margin: 0 auto;
+            /*justify-content: space-between;*/
+            /*display: flex;*/
+            background-color: #f5ddf3;
+        
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #menu ul li{ /*menu 안에 있는 ul 태그 안에 있는 li 태그의 스타일링*/
+            background-color: #f5ddf3; /*배경을 진한 검정으로 지정*/
+            list-style: none; /*위의 캡션만다형 목록을 표현하는 점을 없앰 */
+            float: left; /*li 태그가 왼쪽에 흐르게 설정 (O)*/
+            /*line-height: 40px; /*글자를 가운데 설정하기 위해 줄의 높이를 30px로 지정*/
+            text-align: center; /*글자 가운데 지정*/
+            width: 25%;
+            /*padding: 0 20px;*/
+        }
+
+        #menu .link{
+            /*width: 100%; /*메뉴 링크의 너비 지정*/
+            text-decoration: none; /*a태그가 가지고 있는 기본 밑줄긋기 효과를 없앰*/
+            display: block; /*글자 영역 뿐만 아니라 전체 영역을 클릭해도 링크로 이동하게끔 지정*/
+            color: #000000; /*글자 색상*/
+            font-weight: bold; /*글자를 굵게 지정*/
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        #menu .link:hover{ /*link 태그에 마우스가 오버시 변하는 스타일 설정*/
+            background-color: #666; /*배경을 어두운 회색으로 설정*/
+            color: #ff42e7; /*글자 색상을 핫핑크로 설정*/
+        }
+    </style>
+</head>
+<body>
+    <nav id="menu">
+        <div class="logo">MY LOGO</div>
+        <ul>
+            <li><a href="#" class="link">About</a></li>
+            <li><a href="#" class="link">Services</a></li>
+            <li><a href="#" class="link">Portfolio</a></li>
+            <li><a href="#" class="link">Contact Us</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

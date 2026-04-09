@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/CSS">
+        
+        @font-face {
+            font-family: 'JalpulrineunHaruche';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Haru.woff') format('woff');
+            font-weight: 300;
+            font-display: swap;
+        }
+        
+
+        /* 상단바 전체 배경 (보라색) */
+        .gnb-wrapper {
+            width: 100%;
+            background-color: #b1a0c7; /* 이미지의 연보라색 */
+            height: 60px;
+            display: flex;
+            align-items: center;
+            /* 화면이 이보다 작아지면 가로 스크롤바가 생기며 레이아웃을 유지함 */
+            min-width: 1280px; 
+        }
+
+        /* 실제 콘텐츠가 들어가는 중앙 박스 */
+        .gnb-inner {
+            width: 1080px;      /* 네이버 메인처럼 고정된 너비 (혹은 100% 사용 가능) */
+            margin: 0 auto;     /* 중앙 정렬 */
+            display: flex;
+            justify-content: space-between; /* 양 끝 정렬 */
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* 로고 스타일 */
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* 메뉴 스타일 */
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px; /* 메뉴 사이 간격 */
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'JalpulrineunHaruche';
+        }
+    </style>
+</head>
+<body>
+    <header class="gnb-wrapper">
+    <div class="gnb-inner">
+        <h1 class="logo"><a href="#">L</a></h1>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#">잘풀리는 lily</a></li>
+                <li><a href="#">여행</a></li>
+                <li><a href="#">카페</a></li>
+                <li><a href="#">빵이??</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+</html>
