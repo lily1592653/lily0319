@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://lily-test159265.s3.ap-northeast-2.amazonaws.com/image2.png" type="image">
+    <title>lily_002</title>
+    <style type="text/css">
+        .wrapper{
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+        .wrapper2{
+            margin: 0 auto;
+        }
+        .wrapper2 > h{
+            text-align: center;
+            justify-content: center
+        }
+        .wrapper2 > p {
+            
+        }
+        .msg {
+            text-align: center;
+        }
+        .user_msg > textarea{
+            width: 500px; height: 50px;
+            overflow-y: auto;       /* 내용이 많아지면 스크롤바 생성 */
+            word-break: break-all;
+        }
+        .bot_msg > textarea{
+            width: 500px; height: 300px;
+            overflow-y: auto;       /* 내용이 많아지면 스크롤바 생성 */
+            word-break: break-all;
+        }
+        .result > textarea{
+            width: 500px; height: 300px;
+            overflow-y: auto;       /* 내용이 많아지면 스크롤바 생성 */
+            word-break: break-all;
+        }
+        .intent > ul {
+        list-style: none;
+        display: flex;
+        padding: 0 20px;
+        text-align: center;
+        justify-content: center;
+        }
+        .intent > ul > li {
+        padding: 0 20px;
+        font-size: 10pt;
+        }
+        .scoring > ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        padding: 0 0;
+        }
+        .scoring > ul > li {
+        padding: 0 5px;
+        font-size: 10pt;
+        }
+        /*.box{
+            width: 500px;
+            height: 400px;
+            text-align: left;
+            overflow-y: auto; 
+            word-break: break-all;
+            
+            
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }*/
+    </style>
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper2">
+            <h1>챗봇 평가</h1>
+            <div class="intent">
+                <ul>
+                    <li><input type="checkbox" id="a" class="single-checkbox" onclick="limitCheckbox(this)">safety</li>
+                    <li><input type="checkbox" id="b" class="single-checkbox" onclick="limitCheckbox(this)">safety 제외</li>
+                    <li><input type="checkbox" id="c" class="single-checkbox" onclick="limitCheckbox(this)">Edge/Corner</li>
+                </ul>
+            </div>
+            <div class="scoring">
+                <ul>
+                    <li><input type="checkbox" name="criteria" value="Critical_Defect" class="1y 2y 3y">최우선 원칙</li>
+                    <li><input type="checkbox" name="criteria" value="Accuracy" class="1n 2y 3y">정확성</li>
+                    <li><input type="checkbox" name="criteria" value="Intent_Matching" class="1n 2y 3y">적합성</li>
+                    <li><input type="checkbox" name="criteria" value="Completeness" class="1n 2y 3y">완결성</li>
+                    <li><input type="checkbox" name="criteria" value="Clarity_Tone" class="1y 2y 3y">표현 품질</li>
+                    <li><input type="checkbox" name="criteria" value="Context_Awareness" class="1n 2n 3n">문맥 유지</li>
+                    <li><input type="checkbox" name="criteria" value="Recovery_Robustness" class="1n 2n 3y">복원력</li>
+                    <li><input type="checkbox" name="criteria" value="Safety_Compliance" class="1y 2y 3y">정책 준수</li>
+                </ul>
+            </div>
+        </div>
+        <div class="msg">
+            <div class="user_msg">
+                <p>사용자 message</p>
+                <textarea id="userMessage" placeholder="사용자 message를 입력하세요"></textarea>
+            </div>
+            <div class="bot_msg">
+                <p>bot 응답</p>
+                <textarea id="botResponse" placeholder="봇 응답을 입력하세요"></textarea>
+            </div>
+            <button id="evaluateBtn">평가하기</button>
+            <div class="result">
+                <p>평가</p>
+                <textarea id="resultArea"></textarea>
+                <!--<div id="resultArea" class="box"></div>-->
+            </div>
+        </div>
+        
+        
+    </div>
+    <script type="text/javascript">
+        function limitCheckbox(element){
+            const checkboxes = document.querySelectorAll('.single-checkbox');
+            checkboxes.forEach((checkbox) => {
+                if (checkbox !== element){
+                    checkbox.checked = false; 
+                    //checkbox.disabled=true; 
+                }
+            });
+        } 	    
+        document.getElementById('a').addEventListener('change', function() {
+            if (this.checked){
+                var items1 = document.getElementsByClassName('1y');
+                for (var i=0; i < items1.length; i++){
+                    items1[i].checked = true;
+                }
+                var items2= document.getElementsByClassName('1n');
+                for (var j=0; j < items2.length; j++){
+                    items2[j].checked = false;
+                }
+            }
+        });
+
+        document.getElementById('b').addEventListener('change', function() {
+            if (this.checked){
+                var items3 = document.getElementsByClassName('2y');
+                for (var k=0; k < items3.length; k++){
+                    items3[k].checked = true;
+                }
+                var items4= document.getElementsByClassName('2n');
+                for (var l=0; l < items4.length; l++){
+                    items4[l].checked = false;
+                }
+            }
+        });
+
+        document.getElementById('c').addEventListener('change', function() {
+            if (this.checked){
+                var items5 = document.getElementsByClassName('3y');
+                for (var m=0; m < items5.length; m++){
+                    items5[m].checked = true;
+                }
+                var items6= document.getElementsByClassName('3n');
+                for (var n=0; n < items6.length; n++){
+                    items6[n].checked = false;
+                }
+            }
+        });
+        const LAMBDA_URL = "https://5nvs0c3xrc.execute-api.ap-northeast-2.amazonaws.com/evaluate";
+        
+        //document.getElementById("evaluateBtn").addEventListener("click", async () => {
+        document.getElementById("evaluateBtn").addEventListener("click", async (e) => {
+            e.preventDefault();
+            const userMessage = document.getElementById("userMessage").value.trim();
+            const botResponse = document.getElementById("botResponse").value.trim();
+            const resultArea = document.getElementById("resultArea");
+            const selectedCriteria = Array.from(
+                document.querySelectorAll('input[name="criteria"]:checked')
+            ).map(el => el.value);
+
+            if (!userMessage || !botResponse) {
+                resultArea.value = "사용자 message와 bot 응답을 모두 입력해주세요.";
+                return;
+            }
+            if (selectedCriteria.length === 0) {
+                resultArea.value = "평가 기준을 최소 1개 이상 선택해주세요.";
+                return;
+            }
+
+            resultArea.value = "평가 중...";
+
+            try {
+                const response = await fetch(LAMBDA_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        user_message: userMessage,
+                        bot_response: botResponse,
+                        selected_criteria: selectedCriteria
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    resultArea.value = `오류: ${data.error || "알 수 없는 오류"}\n\n${JSON.stringify(data, null, 2)}`;
+                    return;
+                }
+
+                resultArea.value = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultArea.value = "요청 실패: " + error.message;
+            }
+        });
+</script>
+    
+</body>
+</html>
